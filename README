@@ -10,7 +10,7 @@ from there.
 
 NOTE 1: The NetBSD system itself (kernel and userland programs) is
 merely used by this project. A small crew is developing the system
-actively in his project:
+actively in this project:
 
         http://vshg02.mni.thm.de/hellwig/netbsd-eco32
 
