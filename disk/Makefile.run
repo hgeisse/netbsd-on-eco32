@@ -1,33 +1,102 @@
 #
-# Makefile for building a NetBSD disklabel and file system
+# Makefile for building a NetBSD partition
 #
 
 BUILD = ../..
 DISK = ../disk.img
+PART = 3
 
 all:		proto-fs
 		$(BUILD)/bin/NetBSD-makefs -t ffs -B be -s 106496b \
 		  -f 20000 -o version=1,bsize=8192,fsize=1024 \
-		  -F add.spec fs.img ./root
-		dd if=fs.img of=$(DISK) bs=512 seek=81920 conv=notrunc
-		$(BUILD)/bin/NetBSD-wrboot ./bootblk $(DISK) 3
-		$(BUILD)/bin/NetBSD-dsklbl -wb $(DISK) 3
+		  -F add.spec part.img ./root
+		$(BUILD)/bin/wrpart $(DISK) $(PART) part.img
+		$(BUILD)/bin/NetBSD-wrpboot ./pbootblk $(DISK) $(PART)
+		$(BUILD)/bin/NetBSD-dsklbl -wb $(DISK) $(PART)
 
-proto-fs:
+proto-fs:	destdir.eco32
 		mkdir -p ./root
 		cp ./loader ./root
-		cp $(BUILD)/../os-bin/NetBSD/netbsd ./root
-		cp $(BUILD)/../os-bin/NetBSD/WELCOME ./root
-		mkdir -p ./root/sbin
-		cp $(BUILD)/../os-bin/NetBSD/init* ./root/sbin
+		cp ./netbsd ./root
 		mkdir -p ./root/bin
+		cp destdir.eco32/bin/cat ./root/bin
+		cp destdir.eco32/bin/chmod ./root/bin
+		cp destdir.eco32/bin/cp ./root/bin
+		cp destdir.eco32/bin/date ./root/bin
+		cp destdir.eco32/bin/dd ./root/bin
+		cp destdir.eco32/bin/df ./root/bin
+		cp destdir.eco32/bin/echo ./root/bin
+		cp destdir.eco32/bin/hostname ./root/bin
+		cp destdir.eco32/bin/kill ./root/bin
+		cp destdir.eco32/bin/ln ./root/bin
+		cp destdir.eco32/bin/ls ./root/bin
+		cp destdir.eco32/bin/mkdir ./root/bin
+		cp destdir.eco32/bin/mv ./root/bin
+		cp destdir.eco32/bin/ps ./root/bin
+		cp destdir.eco32/bin/pwd ./root/bin
+		cp destdir.eco32/bin/rm ./root/bin
+		cp destdir.eco32/bin/rmdir ./root/bin
+		cp destdir.eco32/bin/sh ./root/bin
+		cp destdir.eco32/bin/sync ./root/bin
 		mkdir -p ./root/dev
 		mkdir -p ./root/etc
+		mkdir -p ./root/lib
+		mkdir -p ./root/mnt
+		mkdir -p ./root/sbin
+		cp destdir.eco32/sbin/chown ./root/sbin
+		cp destdir.eco32/sbin/disklabel ./root/sbin
+		cp destdir.eco32/sbin/fdisk ./root/sbin
+		cp destdir.eco32/sbin/fsck ./root/sbin
+		cp destdir.eco32/sbin/fsck_ffs ./root/sbin
+		cp destdir.eco32/sbin/halt ./root/sbin
+		cp destdir.eco32/sbin/init ./root/sbin
+		cp destdir.eco32/sbin/mbrlabel ./root/sbin
+		cp destdir.eco32/sbin/mknod ./root/sbin
+		cp destdir.eco32/sbin/mount ./root/sbin
+		cp destdir.eco32/sbin/mount_ffs ./root/sbin
+		cp destdir.eco32/sbin/newfs ./root/sbin
+		cp destdir.eco32/sbin/poweroff ./root/sbin
+		cp destdir.eco32/sbin/reboot ./root/sbin
+		cp destdir.eco32/sbin/shutdown ./root/sbin
+		cp destdir.eco32/sbin/swapon ./root/sbin
+		cp destdir.eco32/sbin/umount ./root/sbin
 		mkdir -p ./root/tmp
 		mkdir -p ./root/usr
-		mkdir -p ./root/usr/data
-		cp $(BUILD)/data/* ./root/usr/data
+		mkdir -p ./root/usr/bin
+		cp destdir.eco32/usr/bin/banner ./root/usr/bin
+		cp destdir.eco32/usr/bin/basename ./root/usr/bin
+		cp destdir.eco32/usr/bin/diff ./root/usr/bin
+		cp destdir.eco32/usr/bin/find ./root/usr/bin
+		cp destdir.eco32/usr/bin/grep ./root/usr/bin
+		cp destdir.eco32/usr/bin/hexdump ./root/usr/bin
+		cp destdir.eco32/usr/bin/less ./root/usr/bin
+		cp destdir.eco32/usr/bin/login ./root/usr/bin
+		cp destdir.eco32/usr/bin/passwd ./root/usr/bin
+		cp destdir.eco32/usr/bin/su ./root/usr/bin
+		cp destdir.eco32/usr/bin/touch ./root/usr/bin
+		cp destdir.eco32/usr/bin/uptime ./root/usr/bin
+		cp destdir.eco32/usr/bin/vi ./root/usr/bin
+		cp destdir.eco32/usr/bin/wc ./root/usr/bin
+		cp destdir.eco32/usr/bin/which ./root/usr/bin
+		mkdir -p ./root/usr/games
+		cp destdir.eco32/usr/games/adventure ./root/usr/games
+		cp destdir.eco32/usr/games/fortune ./root/usr/games
+		cp destdir.eco32/usr/games/hangman ./root/usr/games
+		cp destdir.eco32/usr/games/number ./root/usr/games
+		cp destdir.eco32/usr/games/pom ./root/usr/games
+		cp destdir.eco32/usr/games/rogue ./root/usr/games
+		cp destdir.eco32/usr/games/snake ./root/usr/games
+		cp destdir.eco32/usr/games/tetris ./root/usr/games
+		cp destdir.eco32/usr/games/trek ./root/usr/games
+		cp destdir.eco32/usr/games/wump ./root/usr/games
+		mkdir -p ./root/usr/lib
+		mkdir -p ./root/usr/sbin
+		mkdir -p ./root/usr/share
+
+destdir.eco32:	destdir.eco32.tar.gz
+		tar -xzf destdir.eco32.tar.gz
 
 clean:
-		rm -f *~ fs.img
+		rm -f *~ part.img
 		rm -rf ./root
+		rm -rf ./destdir.eco32
