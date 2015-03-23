@@ -6,7 +6,7 @@ BUILD = ../..
 DISK = ../disk.img
 PART = 3
 
-all:
+all:		mkdirs
 		cp ./loader ./root
 		cp ./netbsd ./root
 		$(BUILD)/bin/NetBSD-makefs -t ffs -B be -s 106496b \
@@ -15,6 +15,23 @@ all:
 		$(BUILD)/bin/wrpart $(DISK) $(PART) part.img
 		$(BUILD)/bin/NetBSD-wrpboot ./pbootblk $(DISK) $(PART)
 		$(BUILD)/bin/NetBSD-dsklbl -wb $(DISK) $(PART)
+
+mkdirs:
+		# this is necessary because Git does not keep empty dirs
+		mkdir -p ./root
+		mkdir -p ./root/bin
+		mkdir -p ./root/dev
+		mkdir -p ./root/etc
+		mkdir -p ./root/lib
+		mkdir -p ./root/mnt
+		mkdir -p ./root/sbin
+		mkdir -p ./root/tmp
+		mkdir -p ./root/usr
+		mkdir -p ./root/usr/bin
+		mkdir -p ./root/usr/games
+		mkdir -p ./root/usr/lib
+		mkdir -p ./root/usr/sbin
+		mkdir -p ./root/usr/share
 
 clean:
 		rm -f *~ part.img
