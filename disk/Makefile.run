@@ -9,7 +9,8 @@ PART = 3
 all:		mkdirs
 		cp ./loader ./root
 		cp ./netbsd ./root
-		$(BUILD)/bin/NetBSD-makefs -t ffs -B be -s 106496b \
+		# take -s argument from disklabel (size of root partition)
+		$(BUILD)/bin/NetBSD-makefs -t ffs -B be -s 1081344b \
 		  -f 20000 -o version=1,bsize=8192,fsize=1024 \
 		  -F add.spec part.img ./root
 		$(BUILD)/bin/wrpart $(DISK) $(PART) part.img

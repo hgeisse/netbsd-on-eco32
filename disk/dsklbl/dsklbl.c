@@ -451,13 +451,13 @@ void fillDiskLabelDefault1(DiskLabel *lp) {
 void fillDiskLabelDefault2(DiskLabel *lp) {
   /* the default disklabel for a partitioned disk */
   lp->d_magic = DSKMAGIC;
-  strcpy(lp->d_typename, "ECO32 SD-100M");
+  strcpy(lp->d_typename, "ECO32 SD-650M");
   lp->d_secsize = 512;
   lp->d_nsectors = 128;
   lp->d_ntracks = 16;
-  lp->d_ncylinders = 100;
+  lp->d_ncylinders = 650;
   lp->d_secpercyl = 2048;
-  lp->d_secperunit = 204800;
+  lp->d_secperunit = 1331200;
   lp->d_sparespertrack = 0;
   lp->d_sparespercyl = 0;
   lp->d_acylinders = 0;
@@ -474,25 +474,29 @@ void fillDiskLabelDefault2(DiskLabel *lp) {
   lp->d_bbsize = 8192;
   lp->d_sbsize = 8192;
   /*-------------------------------*/
-  lp->d_parts[0].p_size = 106496;
+  /* root */
+  lp->d_parts[0].p_size = 1081344;
   lp->d_parts[0].p_offset = 81920;
   lp->d_parts[0].p_fsize = 1024;
   lp->d_parts[0].p_fstype = 7;
   lp->d_parts[0].p_frag = 8;
   /*-------------------------------*/
-  lp->d_parts[1].p_size = 16384;
-  lp->d_parts[1].p_offset = 188416;
+  /* swap */
+  lp->d_parts[1].p_size = 65536;
+  lp->d_parts[1].p_offset = 1163264;
   lp->d_parts[1].p_fsize = 0;
   lp->d_parts[1].p_fstype = 1;
   lp->d_parts[1].p_frag = 0;
   /*-------------------------------*/
-  lp->d_parts[2].p_size = 122880;
+  /* NetBSD slice */
+  lp->d_parts[2].p_size = 1146880;
   lp->d_parts[2].p_offset = 81920;
   lp->d_parts[2].p_fsize = 0;
   lp->d_parts[2].p_fstype = 0;
   lp->d_parts[2].p_frag = 0;
   /*-------------------------------*/
-  lp->d_parts[3].p_size = 204800;
+  /* whole disk */
+  lp->d_parts[3].p_size = 1331200;
   lp->d_parts[3].p_offset = 0;
   lp->d_parts[3].p_fsize = 0;
   lp->d_parts[3].p_fstype = 0;
