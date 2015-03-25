@@ -1,0 +1,2 @@
+/dev/dsk0a	/	ffs	rw	1 1
+/dev/dsk0b	none	swap	sw	0 0
