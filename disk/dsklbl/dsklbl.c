@@ -475,7 +475,7 @@ void fillDiskLabelDefault2(DiskLabel *lp) {
   lp->d_sbsize = 8192;
   /*-------------------------------*/
   /* root */
-  lp->d_parts[0].p_size = 1081344;
+  lp->d_parts[0].p_size = 1024000;
   lp->d_parts[0].p_offset = 81920;
   lp->d_parts[0].p_fsize = 1024;
   lp->d_parts[0].p_fstype = 7;
@@ -501,6 +501,13 @@ void fillDiskLabelDefault2(DiskLabel *lp) {
   lp->d_parts[3].p_fsize = 0;
   lp->d_parts[3].p_fstype = 0;
   lp->d_parts[3].p_frag = 0;
+  /*-------------------------------*/
+  /* extra */
+  lp->d_parts[4].p_size = 57344;
+  lp->d_parts[4].p_offset = 1105920;
+  lp->d_parts[4].p_fsize = 1024;
+  lp->d_parts[4].p_fstype = 7;
+  lp->d_parts[4].p_frag = 8;
   /*-------------------------------*/
   lp->d_checksum = chksum(lp, lp->d_npartitions);
 }
