@@ -1,0 +1,81 @@
+#!/bin/sh
+
+NETBSD=/home/hellwig/netbsd-on-eco32/build
+
+SRCDIR=$NETBSD/usr/src/sys/arch/eco32/compile/obj/GENERIC
+DSTDIR=./os-bin
+cp $SRCDIR/netbsd $DSTDIR/netbsd
+
+SRCDIR=$NETBSD/usr/src/obj/destdir.eco32/bin
+DSTDIR=./os-bin/root/bin
+cp $SRCDIR/cat $DSTDIR/cat
+cp $SRCDIR/chmod $DSTDIR/chmod
+cp $SRCDIR/cp $DSTDIR/cp
+cp $SRCDIR/date $DSTDIR/date
+cp $SRCDIR/dd $DSTDIR/dd
+cp $SRCDIR/df $DSTDIR/df
+cp $SRCDIR/echo $DSTDIR/echo
+cp $SRCDIR/hostname $DSTDIR/hostname
+cp $SRCDIR/kill $DSTDIR/kill
+cp $SRCDIR/ln $DSTDIR/ln
+cp $SRCDIR/ls $DSTDIR/ls
+cp $SRCDIR/mkdir $DSTDIR/mkdir
+cp $SRCDIR/mv $DSTDIR/mv
+cp $SRCDIR/ps $DSTDIR/ps
+cp $SRCDIR/pwd $DSTDIR/pwd
+cp $SRCDIR/rm $DSTDIR/rm
+cp $SRCDIR/rmdir $DSTDIR/rmdir
+cp $SRCDIR/sh $DSTDIR/sh
+cp $SRCDIR/sync $DSTDIR/sync
+cp $SRCDIR/zzz $DSTDIR/zzz
+
+SRCDIR=$NETBSD/usr/src/obj/destdir.eco32/sbin
+DSTDIR=./os-bin/root/sbin
+cp $SRCDIR/chown $DSTDIR/chown
+cp $SRCDIR/disklabel $DSTDIR/disklabel
+cp $SRCDIR/fdisk $DSTDIR/fdisk
+cp $SRCDIR/fsck $DSTDIR/fsck
+cp $SRCDIR/fsck_ffs $DSTDIR/fsck_ffs
+cp $SRCDIR/halt $DSTDIR/halt
+cp $SRCDIR/init $DSTDIR/init
+cp $SRCDIR/mbrlabel $DSTDIR/mbrlabel
+cp $SRCDIR/mknod $DSTDIR/mknod
+cp $SRCDIR/mount $DSTDIR/mount
+cp $SRCDIR/mount_ffs $DSTDIR/mount_ffs
+cp $SRCDIR/newfs $DSTDIR/newfs
+cp $SRCDIR/poweroff $DSTDIR/poweroff
+cp $SRCDIR/reboot $DSTDIR/reboot
+cp $SRCDIR/shutdown $DSTDIR/shutdown
+cp $SRCDIR/swapon $DSTDIR/swapon
+cp $SRCDIR/umount $DSTDIR/umount
+
+SRCDIR=$NETBSD/usr/src/obj/destdir.eco32/usr/bin
+DSTDIR=./os-bin/root/usr/bin
+cp $SRCDIR/banner $DSTDIR/banner
+cp $SRCDIR/basename $DSTDIR/basename
+cp $SRCDIR/diff $DSTDIR/diff
+cp $SRCDIR/find $DSTDIR/find
+cp $SRCDIR/grep $DSTDIR/grep
+cp $SRCDIR/hexdump $DSTDIR/hexdump
+cp $SRCDIR/less $DSTDIR/less
+cp $SRCDIR/login $DSTDIR/login
+cp $SRCDIR/passwd $DSTDIR/passwd
+cp $SRCDIR/su $DSTDIR/su
+cp $SRCDIR/touch $DSTDIR/touch
+cp $SRCDIR/uptime $DSTDIR/uptime
+cp $SRCDIR/vi $DSTDIR/vi
+cp $SRCDIR/wc $DSTDIR/wc
+cp $SRCDIR/which $DSTDIR/which
+
+SRCDIR=$NETBSD/usr/src/obj/destdir.eco32/usr/games
+DSTDIR=./os-bin/root/usr/games
+cp $SRCDIR/adventure $DSTDIR/adventure
+cp $SRCDIR/fortune $DSTDIR/fortune
+cp $SRCDIR/hangman $DSTDIR/hangman
+cp $SRCDIR/number $DSTDIR/number
+cp $SRCDIR/pom $DSTDIR/pom
+cp $SRCDIR/rogue $DSTDIR/rogue
+cp $SRCDIR/snake $DSTDIR/snake
+cp $SRCDIR/tetris $DSTDIR/tetris
+cp $SRCDIR/trek $DSTDIR/trek
+cp $SRCDIR/wump $DSTDIR/wump
