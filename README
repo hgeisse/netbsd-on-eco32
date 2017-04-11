@@ -12,7 +12,8 @@ NOTE 1: The NetBSD system itself (kernel and userland programs) is
 merely used by this project. A small crew is actively developing
 the system in this project:
 
-        http://vshg02.mni.thm.de/hellwig/netbsd-eco32
+        [The project's website is down for now and it
+         will take a couple of months to bring it back.]
 
 There's no need to download this project; all necessary binaries
 are included here.
