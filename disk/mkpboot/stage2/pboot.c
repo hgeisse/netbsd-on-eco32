@@ -17,7 +17,7 @@
 /* constants and data types */
 
 
-#define LOADER_NAME	"loader"	/* name of loader in root dir */
+#define LOADER_NAME	"loader.bin"	/* name of loader in root dir */
 #define LOADER_ADDR	0xC0300000	/* where to load the loader */
 
 #define SSHIFT		9		/* ld of sector size */

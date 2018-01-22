@@ -7,7 +7,7 @@ DISK = ../disk.img
 PART = 4
 
 all:		mkdirs
-		cp ./loader ./root
+		cp ./loader.bin ./root
 		cp ./netbsd ./root
 		# take -s argument from disklabel (size of root partition)
 		$(BUILD)/bin/NetBSD-makefs -t ffs -B be -s 1024000b \
@@ -36,5 +36,5 @@ mkdirs:
 
 clean:
 		rm -f *~ part.img
-		rm -f ./root/loader
+		rm -f ./root/loader.bin
 		rm -f ./root/netbsd
