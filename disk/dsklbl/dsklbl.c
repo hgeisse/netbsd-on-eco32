@@ -475,7 +475,8 @@ void fillDiskLabelDefault2(DiskLabel *lp) {
   lp->d_sbsize = 8192;
   /*-------------------------------*/
   /* root */
-  lp->d_parts[0].p_size = 1024000;
+  /* lp->d_parts[0].p_size = 1024000; changed 24-Jan-2018 */
+  lp->d_parts[0].p_size = 512000;
   lp->d_parts[0].p_offset = 81920;
   lp->d_parts[0].p_fsize = 1024;
   lp->d_parts[0].p_fstype = 7;
